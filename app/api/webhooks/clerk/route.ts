@@ -8,7 +8,8 @@ import { Webhook } from 'svix';
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
-  const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
+  // const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
+  const WEBHOOK_SECRET = 'whsec_6rXm0feL5Wrr88yRL/syq6A+G5V4MBIB';
 
   if (!WEBHOOK_SECRET) {
     throw new Error(
@@ -83,6 +84,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: 'OK', user: newUser });
   }
+  console.log(` evt.data:`, evt.data);
 
   // UPDATE
   if (eventType === 'user.updated') {
