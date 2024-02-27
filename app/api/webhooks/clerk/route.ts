@@ -6,14 +6,13 @@ import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { Webhook } from 'svix';
 
-export async function POST(req: Request) {
-  // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
-  // const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
-  const WEBHOOK_SECRET = 'whsec_6rXm0feL5Wrr88yRL/syq6A+G5V4MBIB';
+const WEBHOOK_SECRET_KEY = process.env.WEBHOOK_SECRET;
 
-  if (!WEBHOOK_SECRET) {
+export async function POST(req: Request) {
+
+  if (!WEBHOOK_SECRET_KEY) {
     throw new Error(
-      'Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local'
+      'Please add WEBHOOK_SECRET_KEY from Clerk Dashboard to .env or .env.local'
     );
   }
 
@@ -35,7 +34,7 @@ export async function POST(req: Request) {
   const body = JSON.stringify(payload);
 
   // Create a new Svix instance with your secret.
-  const wh = new Webhook(WEBHOOK_SECRET);
+  const wh = new Webhook(WEBHOOK_SECRET_KEY);
 
   let evt: WebhookEvent;
 
