@@ -29,6 +29,7 @@ import { CustomField } from './CustomField';
 import MediaUploader from './MediaUploader';
 import TransformedImage from './TransformedImage';
 import { InsufficientCreditsModal } from './InsufficientModal';
+import { updateCredits } from '@/lib/actions/user.actions';
 
 export const formSchema = z.object({
   title: z.string(),
@@ -187,7 +188,7 @@ const TransformationForm = ({
     setNewTransformation(null);
 
     startTransition(async () => {
-      //   await updateCredits(userId, creditFee)
+      await updateCredits(userId, creditFee);
     });
   };
 
